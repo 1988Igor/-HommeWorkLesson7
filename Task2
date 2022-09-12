@@ -1,0 +1,54 @@
+//В двумерном массиве целых чисел. Удалить строку и столбец, на пересечении которых расположен наименьший элемент.
+int[,] matrix = new int[6, 7];
+int i = 0, j = 0, i1, j1, mini = 0, minj = 0;
+Random rnd = new Random();
+Console.WriteLine("The array:");
+for (i = 0; i < 5; i++)
+{
+    for (j = 0; j < 5; j++)
+    {
+        matrix[i, j] = rnd.Next(1, 30);
+        Console.Write("{0} ", matrix[i, j]);
+    }
+    Console.Write("\n");
+}
+for (i = 0; i < 5; i++)
+{
+    for (j = 0; j < 5; j++)
+    {
+        if (matrix[i, j] < matrix[mini, minj])
+        {
+            mini = i;
+            minj = j;
+        }
+    }
+}
+Console.WriteLine("\nThe minim element in array: {0}", matrix[mini, minj]);
+Console.WriteLine("Changed array:");
+int[,] matrix2 = new int[4, 4];
+for (i = 0; i < 4; i++)
+{
+    if (i >= mini)
+    {
+        i1 = i + 1;
+    }
+    else
+    {
+        i1 = i;
+    }
+    for (j = 0; j < 4; j++)
+    {
+        if (j >= minj)
+        {
+            j1 = j + 1;
+        }
+        else
+        {
+            j1 = j;
+        }
+        matrix2[i, j] = matrix[i1, j1];
+        Console.Write("{0} ", matrix2[i, j]);
+    }
+    Console.Write("\n");
+}
+
